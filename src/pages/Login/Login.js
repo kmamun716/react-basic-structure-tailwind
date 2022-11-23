@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import InputForm from "../../components/shared/InputForm";
 import { login } from "../../redux/actions/authAction";
 
 const Login = () => {
+  const auth = useSelector((state) => state.auth);
+  let navigate = useNavigate();
+  let location = useLocation();
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  let from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    if (auth.isLogin) {
+      navigate(from, { replace: true });
+    }
+  }, [auth, navigate, from]);
   const onSubmit = (data) => {
     dispatch(login(data));
   };
