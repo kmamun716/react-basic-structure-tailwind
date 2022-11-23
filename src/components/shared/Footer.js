@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            This is Footer
+        <div className='text-xl mt-2'>
+            &#169; {new Date().getFullYear()} All Right Reserved
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputForm from "../../components/shared/InputForm";
 import { login } from "../../redux/actions/authAction";
 
@@ -44,15 +44,16 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input
+          <InputForm
             type="password"
             placeholder="Type Your Password"
-            className="input input-bordered w-full max-w-xs"
-            {...register("password", { required: true })}
+            register={register}
+            name="password"
           />
         </div>
         <input className="btn btn-accent my-2" type="submit" value="Login" />
       </form>
+      <p>Not Have any Account? <Link to='/register'>Register Here</Link></p>
     </div>
   );
 };
